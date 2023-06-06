@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 def islower(c):
-    for lowercase in range(97, 123):
-        if chr(lowercase) == c:
-            return True
-    for uppercase in range(65, 91):
-        if chr(uppercase) == c:
-            return False
-    return False
+    if ord(c) >= 97 and ord(c) <= 122:
+        return True
+    else:
+        return False
