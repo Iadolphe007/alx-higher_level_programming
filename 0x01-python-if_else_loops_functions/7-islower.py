@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 def islower(c):
     for lowercase in range(97, 123):
         if chr(lowercase) == c:
@@ -7,4 +7,3 @@ def islower(c):
         if chr(uppercase) == c:
             return False
     return False
-
