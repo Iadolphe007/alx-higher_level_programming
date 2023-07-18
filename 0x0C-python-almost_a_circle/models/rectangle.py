@@ -69,3 +69,21 @@ class Rectangle(Base):
 
         for i in range(self.height):
             print(" " * self.x + "#" * self.width)
+
+    def update(self, *args, **kwargs):
+        if args is not None and len(args) != 0:
+            list_atr = ['id', 'width', 'height', 'x', 'y']
+            for i in range(len(args)):
+                setattr(self, list_atr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+
+    def to_dictionary(self):
+        list_atr = ['id', 'width', 'height', 'x', 'y']
+        dict_res = {}
+
+        for key in list_atr:
+            dict_res[key] = getattr(self, key)
+
+        return dict_res
