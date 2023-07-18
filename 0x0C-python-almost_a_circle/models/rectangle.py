@@ -70,6 +70,15 @@ class Rectangle(Base):
         for i in range(self.height):
             print(" " * self.x + "#" * self.width)
 
+    def __str__(self):
+        """STR DUNDER METHOS """
+        str_rect = "[Rectangle] "
+        str_id = "({}) ".format(self.id)
+        str_xy = "{}/{} - ".format(self.x, self.y)
+        str_w = "{}/{}".format(self.width, self.height)
+
+        return str_rect + str_id + str_xy + str_w
+
     def update(self, *args, **kwargs):
         if args is not None and len(args) != 0:
             list_atr = ['id', 'width', 'height', 'x', 'y']
