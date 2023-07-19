@@ -2,6 +2,7 @@
 """class base"""
 import json
 import os.path
+import csv
 
 
 class Base:
@@ -68,18 +69,18 @@ class Base:
     @classmethod
     def save_to_file_csv(cls, list_objs):
          """Serializes list_objs and saves to file"""
-        filename = cls.__name__ + ".csv"
-        with open(filename, "w", newline="") as csvfile:
-            if list_objs is None or list_objs == []:
-                csvfile.write("[]")
-            else:
-                if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
-                else:
-                    fieldnames = ["id", "size", "x", "y"]
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                for obj in list_objs:
-                    writer.writerow(obj.to_dictionary())
+         filename = cls.__name__ + ".csv"
+         with open(filename, "w", newline="") as csvfile:
+             if list_objs is None or list_objs == []:
+                 csvfile.write("[]")
+             else:
+                 if cls.__name__ == "Rectangle":
+                     fieldnames = ["id", "width", "height", "x", "y"]
+                 else:
+                     fieldnames = ["id", "size", "x", "y"]
+                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                     for obj in list_objs:
+                         writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
