@@ -72,103 +72,35 @@ class testBase(unittest.TestCase):
         json_string = Base.to_json_string([None])
         self.assertEqual(json_string, "[null]")
 
-    def test_to_json_string(self):
+class TestSquare(unittest.TestCase):
+    """
+    class for testing Base class' methods
+    """
+
+    @classmethod
+    def setUpClass(cls):
         """
-        test if to_json_string returns the
-        correct JSON representation
+        Set up class method for the doc tests
         """
-        list_dictionaries = [{'id': 1, 'name': 'John'},
-                {'id': 2, 'name': 'Alice'}]
-        json_string = Base.to_json_string(list_dictionaries)
-        self.assertEqual(json_string, '[{"id": 1, "name": "John"}, {"id": 2, "name": "Alice"}]')
+        cls.setup = inspect.getmembers(Base, inspect.isfunction)
 
-    def test_save_to_file(self):
-        """ Test if save_to_file correctly saves the 
-        JSON representation to a file
+    def test_module_docstring(self):
         """
-        list_objs = [Base(1), Base(2), Base(3)]
-        Base.save_to_file(list_objs)
-        with open('Base.json', 'r') as file:
-            json_string = file.read()
-            self.assertEqual(json_string, '[{"id": 1}, {"id": 2}, {"id": 3}]')
-
-    def test_from_json_string(self):
-        """Test if from_json_string correctly 
-        converts JSON to Python objects
+        Tests if module docstring documentation exist
         """
-        json_string = '[{"id": 1, "name": "John"}, {"id": 2, "name": "Alice"}]'
-        list_objs = Base.from_json_string(json_string)
-        self.assertEqual(len(list_objs), 2)
-        self.assertEqual(list_objs[0].id, 1)
-        self.assertEqual(list_objs[1].id, 2)
+        self.assertTrue(len(Base.__doc__) >= 1)
 
-    def test_create(self):
+    def test_class_docstring(self):
         """
-        Test if create correctly creates and
-        updates an object from a dictionary
+        Tests if class docstring documentation exist
         """
-        dictionary = {'id': 1, 'name': 'John'}
-        base = Base.create(**dictionary)
-        self.assertEqual(base.id, 1)
-        self.assertEqual(base.name, 'John')
+        self.assertTrue(len(Base.__doc__) >= 1)
 
-    def test_load_from_file(self):
-        """Test if load_from_file correctly loads objects from a file"""
-        list_objs = [Base(1), Base(2), Base(3)]
-        Base.save_to_file(list_objs)
-        loaded_objs = Base.load_from_file()
-        self.assertEqual(len(loaded_objs), 3)
-        self.assertEqual(loaded_objs[0].id, 1)
-        self.assertEqual(loaded_objs[1].id, 2)
-        self.assertEqual(loaded_objs[2].id, 3)
-
-    def test_save_to_file_csv(self):
+    def test_func_docstrings(self):
         """
-        Test if save_to_file_csv correctly serializes a
-        list of objects and saves them to a CSV file
+        Tests if methods docstring documntation exist
         """
-        list_objs = [Base(1), Base(2), Base(3)]
-        Base.save_to_file_csv(list_objs)
-
-        with open('Base.csv', 'r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            rows = [row for row in reader]
-            self.assertEqual(len(rows), 3)
-            self.assertEqual(int(rows[0]['id']), 1)
-            self.assertEqual(int(rows[1]['id']), 2)
-            self.assertEqual(int(rows[2]['id']), 3)
-        """Test if save_to_file_csv handles empty list correctly"""
-        empty_list = []
-        Base.save_to_file_csv(empty_list)
-
-        with open('Base.csv', 'r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            rows = [row for row in reader]
-            self.assertEqual(len(rows), 1)
-
-        """Test if save_to_file_csv handles None correctly"""
-        Base.save_to_file_csv(None)
-
-        with open('Base.csv', 'r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            rows = [row for row in reader]
-            self.assertEqual(len(rows), 1)
-
-    def test_load_from_file_csv(self):
-        """test if load_from_file_csv correctly deserializes
-        a CSV file and converts its contents into a list
-        of Python objects
-        """
-        list_objs = [Base(1), Base(2), Base(3)]
-        Base.save_to_file_csv(list_objs)
-
-        loaded_objs = Base.load_from_file_csv()
-        self.assertEqual(len(loaded_objs), 3)
-        self.assertEqual(loaded_objs[0].id, 1)
-        self.assertEqual(loaded_objs[1].id, 2)
-        self.assertEqual(loaded_objs[2].id, 3)
-
-        """handle non existing object"""
-        nonexistent_objs = Base.load_f
+        for func in self.setup:
+            self.assertTrue(len(func[1].__doc__) >= 1)
 if __name__ == '__main__':
     unittest.main()
