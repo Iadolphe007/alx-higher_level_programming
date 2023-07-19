@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """class base"""
 import json
+import os.path
 
 
 class Base:
@@ -30,3 +31,36 @@ class Base:
             else:
                 list_dic = [o.to_dictionary() for o in list_objs]
                 file.write(Base.to_json_string(list_dic))
+
+    @staticmethod
+    def from_json_string(json_string):
+        if json_string is None or json_string == "[]":
+            return []
+        return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                new = cls(10, 10)
+            else:
+                new = cls(10)
+            new.update(**dictionary)
+            return new
+
+    @classmethod
+    def load_from_file(cls):
+        filename = "{}.json".format(cls.__name__)
+        if os.path.exists(filename) is False:
+            return []
+
+        with open(filename, 'r') as f:
+            list_str = f.read()
+
+        list_cls = cls.from_json_string(list_str)
+        list_ins = []
+
+        for index in range(len(list_cls)):
+            list_ins.append(cls.create(**list_cls[index]))
+
+        return list_ins
