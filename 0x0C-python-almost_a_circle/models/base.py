@@ -84,7 +84,7 @@ class Base:
     @classmethod
     def load_from_file_csv(cls):
         """Deserializes CSV format from a file"""
-        ilename = cls.__name__ + ".csv"
+        filename = cls.__name__ + ".csv"
         try:
             with open(filename, "r", newline="") as csvfile:
                 if cls.__name__ == "Rectangle":
