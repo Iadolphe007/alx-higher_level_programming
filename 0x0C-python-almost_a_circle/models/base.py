@@ -64,3 +64,5 @@ class Base:
             list_ins.append(cls.create(**list_cls[index]))
 
         return list_ins
+
+
