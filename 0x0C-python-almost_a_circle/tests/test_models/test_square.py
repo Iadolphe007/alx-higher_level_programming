@@ -15,7 +15,7 @@ class TestSquareMethods(unittest.TestCase):
 
     def test_new_square(self):
         new = Square(3)
-      
+
         self.assertEqual(new.size, 3)
         self.assertEqual(new.width, 3)
         self.assertEqual(new.height, 3)

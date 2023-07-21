@@ -51,5 +51,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.rectangle.x, 4)
         self.assertEqual(self.rectangle.y, 2)
 
+
 if __name__ == '__main__':
     unittest.main()

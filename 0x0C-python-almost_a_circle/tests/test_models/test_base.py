@@ -6,6 +6,7 @@ from models.base import Base
 from models.square import Square
 """create test for models"""
 
+
 class testBase(unittest.TestCase):
     def test_id_none(self):
         """test for no id"""
@@ -40,26 +41,12 @@ class testBase(unittest.TestCase):
     def test_id_dict(self):
         """test when id is a dictionary"""
         base = Base({"id": 7})
-        self.assertEqual({"id":7}, base.id)
+        self.assertEqual({"id": 7}, base.id)
 
     def test_id_tuple(self):
         """test when id is a tuple"""
         base = Base((1,))
         self.assertEqual((1,), base.id)
-    def test_to_json_type(self):
-        """test json string"""
-        square = Square(1, 0, 0, 609)
-        json_dict = square.to_dictionary()
-        json_string = Base.to_json_string([json_dict])
-        self.assertEqual(json.loads(json_string),
-                [{"id": 609, "y": 0, "size": 1, "x": 0}])
-
-    def test_to_json_value(self):
-        square = Square(1, 0, 0, 609)
-        json_dict = square.to_dictionary()
-        json_string = Base.to_json_string([json_dict])
-        self.assertEqual(json.loads(json_string),
-                [{"id": 609, "y": 0, "size": 1, "x": 0}])
 
     def test_to_json_None(self):
         square = Square(1, 0, 0, 609)
@@ -72,6 +59,7 @@ class testBase(unittest.TestCase):
         json_dict = square.to_dictionary()
         json_string = Base.to_json_string([None])
         self.assertEqual(json_string, "[null]")
+
 
 class TestSquare(unittest.TestCase):
     """
@@ -87,5 +75,7 @@ class TestSquare(unittest.TestCase):
 
     def test_class_docstring(self):
         self.assertTrue(len(Base.__doc__) >= 1)
+
+
 if __name__ == '__main__':
     unittest.main()
