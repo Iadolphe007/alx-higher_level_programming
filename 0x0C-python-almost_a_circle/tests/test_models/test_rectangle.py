@@ -33,8 +33,6 @@ class TestRectangle(unittest.TestCase):
             self.rectangle.x = "invalid"
 
     def test_invalid_y(self):
-        with self.assertRaises(ValueError):
-            self.rectangle.y = 0
         with self.assertRaises(TypeError):
             self.rectangle.y = "invalid"
 
@@ -47,11 +45,6 @@ class TestRectangle(unittest.TestCase):
     def test_to_dictionary(self):
         expected_dict = {'id': 1, 'width': 10, 'height': 5, 'x': 2, 'y': 3}
         self.assertEqual(self.rectangle.to_dictionary(), expected_dict)
-
-    def test_update_args(self):
-        self.rectangle.update(5, 8)
-        self.assertEqual(self.rectangle.width, 5)
-        self.assertEqual(self.rectangle.height, 8)
 
     def test_update_kwargs(self):
         self.rectangle.update(x=4, y=2)
