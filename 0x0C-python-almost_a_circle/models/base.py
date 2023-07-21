@@ -18,6 +18,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """convert file to json"""
         if list_dictionaries is None or list_dictionaries == '[]':
             return '[]'
         else:
@@ -25,6 +26,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
+        """saving file module"""
         filename = '{}.json'.format(cls.__name__)
         with open(filename, "w") as file:
             if list_objs is None:
@@ -35,12 +37,14 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
+        """take string from model"""
         if json_string is None or json_string == "[]":
             return []
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
+        """ creacte dict model"""
         if dictionary and dictionary != {}:
             if cls.__name__ == "Rectangle":
                 new = cls(10, 10)
@@ -51,6 +55,7 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
+        """load file mdole"""
         filename = "{}.json".format(cls.__name__)
         if os.path.exists(filename) is False:
             return []

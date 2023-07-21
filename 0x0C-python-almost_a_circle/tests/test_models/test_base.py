@@ -49,12 +49,14 @@ class testBase(unittest.TestCase):
         self.assertEqual((1,), base.id)
 
     def test_to_json_None(self):
+        """test when there is no string to convert"""
         square = Square(1, 0, 0, 609)
         json_dict = square.to_dictionary()
         json_string = Base.to_json_string([None])
         self.assertEqual(json_string, "[null]")
 
     def test_to_json_Empty(self):
+        """test when string is empty"""
         square = Square(1, 0, 0, 609)
         json_dict = square.to_dictionary()
         json_string = Base.to_json_string([None])
@@ -68,12 +70,15 @@ class TestSquare(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        """setup model"""
         cls.setup = inspect.getmembers(Base, inspect.isfunction)
 
     def test_module_docstring(self):
+        """docstring model"""
         self.assertTrue(len(Base.__doc__) >= 1)
 
     def test_class_docstring(self):
+        """class docstring"""
         self.assertTrue(len(Base.__doc__) >= 1)
 
 
