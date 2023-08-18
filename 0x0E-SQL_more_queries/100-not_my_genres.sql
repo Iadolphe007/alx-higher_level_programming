@@ -9,7 +9,7 @@ LEFT JOIN (
 	JOIN tv_shows
 	ON tv_show_genres.show_id = tv_shows.id
 	WHERE tv_shows.title = "Dexter"
-	ORDER BY tv_genres.id)
-dexter_genres ON dexter_genres.id = tv_genres.id
+	ORDER BY tv_genres.id
+) dexter_genres ON dexter_genres.id = tv_genres.id
 WHERE dexter_genres.id is NULL
 ORDER BY name;
