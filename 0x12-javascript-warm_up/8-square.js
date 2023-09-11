@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-const x = process.argv[2];
+const x = Math.floor(Number(process.argv[2]));
 if (!process.argv[2]) {
   console.log('Missing size');
 } else if (isNaN(process.argv[2])) {
