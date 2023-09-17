@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-script that creates the State California 
-with the City San Francisco from the database
+lists all City objects from a database
 """
 
 import sqlalchemy
@@ -14,12 +13,11 @@ from sys import argv
 
 if __name__ == "__main__":
     eng = create_engine("mysql+mysqldb://{}:{}@localhost/{}".format(
-                       argv[1], argv[2], argv[3]))
+        argv[1], argv[2], argv[3]))
     Base.metadata.create_all(eng)
     Session = sessionmaker(bind=eng)
     session = Session()
-    cali = State(name="California")
-    cali.cities = [City(name="San Francisco")]
-    session.add(cali)
-    session.commit()
+    rows = session.query(City).all()
+    for city in rows:
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
     session.close()
