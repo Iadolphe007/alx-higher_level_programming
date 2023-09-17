@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-script that creates the State California 
+script that creates the State California
 with the City San Francisco from the database
 """
 
@@ -22,4 +22,3 @@ if __name__ == "__main__":
     cali.cities = [City(name="San Francisco")]
     session.add(cali)
     session.commit()
-    session.close()
