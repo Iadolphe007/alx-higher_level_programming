@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-script that lists all State objects, and corresponding 
+script that lists all State objects, and corresponding
 City objects, contained in the databas
 """
 
