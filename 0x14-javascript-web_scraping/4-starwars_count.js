@@ -1,15 +1,15 @@
 #!/usr/bin/node
 
-const request = require('request')
-const url = process.atrgv[2]
-const characterId = '18'
-let count = 0
+const request = require('request');
+const url = process.atrgv[2];
+const characterId = '18';
+let count = 0;
 
 request.get(url, (error, response, body) => {
     if (error) {
-        console.log(error)
+        console.log(error);
     } else {
-        const data = JSON.parse(body)
+        const data = JSON.parse(body);
         data.results.forEach((film) => {
             film.characters.forEach((character) => {
                 if (character.includes(characterId)) {
@@ -17,6 +17,6 @@ request.get(url, (error, response, body) => {
                 }
             })
         });
-        console.log(count)
+        console.log(count);
     }
 })
