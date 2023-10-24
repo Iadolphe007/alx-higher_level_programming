@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-unction helpRequest (arr, i) {
+function helpRequest (arr, i) {
   if (i === arr.length) {
     return;
   }
