@@ -1,10 +1,10 @@
 #!/usr/bin/node
 
-const request = require('request')
-const url = process.argv[2]
+const request = require('request');
+const url = process.argv[2];
 request.get(url, { json: true }, (error, response, body) => {
     if (error) {
-        console.log(error)
+        console.log(error);
     }
 
     const completedTask = {};
