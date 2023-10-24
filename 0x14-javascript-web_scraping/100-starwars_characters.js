@@ -1,12 +1,14 @@
 #!/usr/bin/node
 
 const request = require('request');
-const mvId = process.argv[2];
-const url = `https://swapi.dev/api/films/${mvId}/`;
+
+const movieId = process.argv[2];
+const url = `https://swapi.dev/api/films/${movieId}/`;
 
 request.get(url, (error, response, body) => {
   if (error) {
     console.log(error);
+    return;
   }
 
   const data = JSON.parse(body);
@@ -15,6 +17,7 @@ request.get(url, (error, response, body) => {
     request(character, (error, response, body) => {
       if (error) {
         console.log(error);
+        return;
       }
       const characterData = JSON.parse(body);
       console.log(characterData.name);
