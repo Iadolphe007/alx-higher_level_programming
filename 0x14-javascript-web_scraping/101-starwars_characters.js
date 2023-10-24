@@ -2,23 +2,33 @@
 
 const request = require('request');
 
-function helpRequest (arr, i) {
-  if (i === arr.length) {
+const movieId = process.argv[2];
+const url = `https://swapi.dev/api/films/${movieId}/`;
+let characters = [];
+
+request(url, (error, response, body) => {
+  if (error) {
+    console.log(error);
     return;
   }
-  request(arr[i], function (error, response, body) {
-    if (error) {
-      console.error(error);
-    }
-    console.log(JSON.parse(body).name);
-    helpRequest(arr, i + 1);
-  });
-}
 
-request('http://swapi.co/api/films/' + process.argv[2], function (error, response, body) {
-  if (error) {
-    console.error(error);
-  }
-  const charac = JSON.parse(body).characters;
-  helpRequest(charac, 0);
+  const data = JSON.parse(body);
+  characters = data.characters;
+  getCharacters(0);
 });
+
+const getCharacters = (index) => {
+  if (index === characters.length) {
+    return;
+  }
+
+  request(characters[index], (error, response, body) => {
+    if (error) {
+      console.log(error);
+      return;
+    }
+    const characterData = JSON.parse(body);
+    console.log(characterData.name);
+    getCharacters(index + 1);
+  });
+};
