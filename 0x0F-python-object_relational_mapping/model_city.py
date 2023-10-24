@@ -6,7 +6,7 @@ that contains the class definition of a City
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
-class city(Base):
+class City(Base):
     """city representation"""
     __tablename__ = "cities"
     id = column(Integer, primary_key=true)
